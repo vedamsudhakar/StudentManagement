@@ -3,21 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StudentManagement"
+        xmlns:viewModels="clr-namespace:StudentManagement.ViewModels"
         mc:Ignorable="d"
         Title="Student Management" Height="556" Width="952">
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
     <Grid>
-        <UserControls:StudentForm Margin="10,10,10,311" />
         <DataGrid x:Name="dataGrid" 
                   ItemsSource="{Binding Students}"
                   ColumnWidth="*"
-                  Margin="10,254,10,10"
+                  Margin="10,36,10,65"
                   AutoGenerateColumns="False"
                   CanUserResizeColumns="False"
                   CanUserReorderColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
-                  IsReadOnly="True" SelectionChanged="dataGrid_SelectionChanged">
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}"  />
                 <DataGridTextColumn Header="LastName" Binding="{Binding LastName}" />
@@ -25,6 +27,14 @@
                 <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
             </DataGrid.Columns>            
         </DataGrid>
+
+        <Button Content="Add Student" 
+                Command="{Binding AddStudentCommand}" 
+                HorizontalAlignment="Left" 
+                Margin="10,0,0,20" 
+                VerticalAlignment="Bottom" 
+                Width="100" 
+                Height="30" />
 
     </Grid>
 </Window>
